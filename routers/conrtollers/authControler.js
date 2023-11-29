@@ -10,6 +10,7 @@ const {
 const {
   generateToken,
   generateRefreshToken,
+  verifyToken,
 } = require("../../midlewares/pasportJWT");
 
 const checConect = async (req, res, next) => {
@@ -110,7 +111,7 @@ const logout = async (req, res, next) => {
 const refreshUser = async (req, res, next) => {
   try {
     const token = req.headers.authorization.split(" ")[1];
-    const decodedToken = verifyRefreshToken(token);
+    const decodedToken = verifyToken(token);
     if (!decodedToken) {
       throw HttpError(400, "RefreshToken is invalid");
     }

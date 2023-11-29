@@ -9,7 +9,7 @@ const { passportAuthenticate } = require("../midlewares/pasportJWT");
 router.get("/", authController.checConect);
 router.post("/register", authController.register);
 router.post("/login", authController.login);
-router.post("/loguot", passportAuthenticate, authController.logout);
+router.post("/logout", passportAuthenticate, authController.logout);
 router.post("/refresh", passportAuthenticate, authController.refreshUser);
 
 // router.post(
