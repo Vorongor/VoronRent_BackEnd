@@ -5,10 +5,6 @@ const logger = require("morgan");
 const cors = require("cors");
 
 const authRouter = require("./routers/authRuter");
-// const usersRouters = require("./routes/usersRouters");
-// const exercisesRouters = require("./routes/exercisesRouters");
-// const diaryRouters = require("./routes/diaryRouters");
-// const statisticRouters = require("./routes/statisticRouters");
 
 const app = express();
 
@@ -19,7 +15,7 @@ app.use(cors());
 app.use(express.json());
 app.use(express.static("public"));
 
-app.use("/conect", authRouter);
+app.use("/auth", authRouter);
 
 // app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
