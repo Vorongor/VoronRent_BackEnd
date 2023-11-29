@@ -5,6 +5,7 @@ const logger = require("morgan");
 const cors = require("cors");
 
 const authRouter = require("./routers/authRuter");
+const carRouter = require("./routers/carRouter");
 
 const app = express();
 
@@ -16,6 +17,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 app.use("/auth", authRouter);
+app.use("/car", carRouter);
 
 // app.use("/api-docs", swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
