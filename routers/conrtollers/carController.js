@@ -16,6 +16,8 @@ const getAllCar = async (req, res, next) => {
     res.json({
       status: "success",
       code: 200,
+      page,
+      pageSize,
       data: result,
     });
   } catch (error) {
