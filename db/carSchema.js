@@ -46,7 +46,7 @@ const carSchema = new mongoose.Schema({
     required: true,
   },
   rentalPrice: {
-    type: String,
+    type: Number,
     required: true,
   },
   rentalCompany: {

@@ -7,6 +7,7 @@ const carController = require("./conrtollers/carController");
 // const upload = multer({ dest: "uploads/" });
 
 router.get("/", carController.getAllCar);
+router.get("/search", carController.getSearchedCar);
 
 // router.post(
 //   "/avatar/upload",
