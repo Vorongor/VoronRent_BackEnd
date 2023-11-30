@@ -21,6 +21,7 @@ const getAllCar = async (req, res, next) => {
       code: 200,
       page,
       pageSize,
+      maxSize,
       data: result,
     });
   } catch (error) {
