@@ -13,14 +13,17 @@ const getAllCar = async (req, res, next) => {
 
     const result = await Car.find().limit(pageSize);
 
+    const uniqueBrands = await Car.distinct("make");
+    const uniquePrices = await Car.distinct("rentalPrice");
+
     if (!result) {
       throw HttpError(404, "Not Found!");
     }
     res.json({
       status: "success",
       code: 200,
-      page,
-      pageSize,
+      makes: uniqueBrands,
+      prices: uniquePrices,
       maxSize,
       data: result,
     });
