@@ -4,11 +4,14 @@ const HttpError = require("../../midlewares/HttpError");
 const getAllCar = async (req, res, next) => {
   try {
     const page = parseInt(req.query.page) || 1;
-    const pageSize = parseInt(req.query.pageSize) || 12;
+    let pageSize = 12 * page;
+    const maxSize = await Car.countDocuments();
 
-    const startIndex = (page - 1) * pageSize;
+    if (pageSize >= maxSize) {
+      pageSize = maxSize;
+    }
 
-    const result = await Car.find().skip(startIndex).limit(pageSize);
+    const result = await Car.find().limit(pageSize);
 
     if (!result) {
       throw HttpError(404, "Not Found!");
