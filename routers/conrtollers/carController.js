@@ -80,7 +80,8 @@ const getSearchedCar = async (req, res, next) => {
 
 const addOrder = async (req, res, next) => {
   try {
-    const { orderNumber, client, contact, startTime, finishTime } = req.body;
+    const { orderNumber, client, contact, startTime, finishTime, carId } =
+      req.body;
     const userId = req.user._id;
 
     const { error } = validateNewOrder({
