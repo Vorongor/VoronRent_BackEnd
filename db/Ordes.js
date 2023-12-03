@@ -21,6 +21,10 @@ const orderSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  car: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Car",
+  },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",

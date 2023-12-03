@@ -89,6 +89,7 @@ const addOrder = async (req, res, next) => {
       contact,
       startTime,
       finishTime,
+      carId,
     });
     if (error) {
       throw HttpError(400, error.details[0].message);
@@ -100,6 +101,7 @@ const addOrder = async (req, res, next) => {
       contact: contact,
       startTime: startTime,
       finishTime: finishTime,
+      carId: carId,
       owner: userId,
     });
 
