@@ -21,6 +21,18 @@ const orderSchema = new mongoose.Schema({
     type: Number,
     required: true,
   },
+  rentalPrice: {
+    type: Number,
+    required: true,
+  },
+  make: {
+    type: String,
+    required: true,
+  },
+  model: {
+    type: String,
+    required: true,
+  },
   carId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Car",

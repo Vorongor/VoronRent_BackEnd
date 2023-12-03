@@ -96,12 +96,17 @@ const addOrder = async (req, res, next) => {
       throw HttpError(400, error.details[0].message);
     }
 
+    const car = await Car.findById(carId);
+
     const newOrder = await Order.create({
       orderNumber: orderNumber,
       client: client,
       contact: contact,
       startTime: startTime,
       finishTime: finishTime,
+      rentalPrice: car.rentalPrice,
+      make: car.make,
+      model: car.model,
       carId: carId,
       owner: userId,
     });
