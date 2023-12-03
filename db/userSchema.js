@@ -19,10 +19,6 @@ const userSchema = new mongoose.Schema({
     enum: ["admin", "user", "owner"],
     default: "user",
   },
-  fullInfoCompleated: {
-    type: Boolean,
-    default: false,
-  },
 });
 
 const User = mongoose.model("User", userSchema);

@@ -1,5 +1,8 @@
 const Car = require("../../db/carSchema");
 const HttpError = require("../../midlewares/HttpError");
+const { User } = require("../../db/userSchema");
+const { validateNewOrder } = require("../../midlewares/authMid");
+const { Order } = require("../../db/Ordes");
 
 const getAllCar = async (req, res, next) => {
   try {
@@ -75,7 +78,59 @@ const getSearchedCar = async (req, res, next) => {
   }
 };
 
+const addOrder = async (req, res, next) => {
+  try {
+    const { orderNumber, client, contact, startTime, finishTime } = req.body;
+    const userId = req.user._id;
+
+    const { error } = validateNewOrder({
+      orderNumber,
+      client,
+      contact,
+      startTime,
+      finishTime,
+    });
+    if (error) {
+      throw HttpError(400, error.details[0].message);
+    }
+
+    const newOrder = await Order.create({
+      orderNumber: orderNumber,
+      client: client,
+      contact: contact,
+      startTime: startTime,
+      finishTime: finishTime,
+      owner: userId,
+    });
+
+    res.json({
+      status: "success",
+      code: 200,
+      orders: newOrder,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+const getOrders = async (req, res, next) => {
+  try {
+    const userId = req.user._id;
+
+    const userOrders = await Order.find({ owner: userId });
+
+    res.json({
+      status: "success",
+      code: 200,
+      orders: userOrders,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAllCar,
   getSearchedCar,
+  addOrder,
+  getOrders,
 };

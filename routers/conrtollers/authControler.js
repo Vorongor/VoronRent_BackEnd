@@ -1,5 +1,4 @@
 const bcrypt = require("bcrypt");
-// const { HttpError } = require("../../helpers/index");
 const HttpError = require("../../midlewares/HttpError");
 const { User } = require("../../db/userSchema");
 const {

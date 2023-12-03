@@ -110,10 +110,23 @@ const sanitizeUser = (user) => {
   return sanitizedUser;
 };
 
+const validateNewOrder = (data) => {
+  const schema = Joi.object({
+    orderNumber: Joi.string().required().messages(customMessages),
+    client: Joi.string().required().messages(customMessages),
+    contact: Joi.string().required().messages(customMessages),
+    startTime: Joi.number().required().messages(customMessages),
+    finishTime: Joi.number().required().messages(customMessages),
+  });
+
+  return schema.validate(data, { abortEarly: false });
+};
+
 module.exports = {
   validateNewUser,
   validateUser,
   validateUserParams,
   validateUserChangeParams,
   sanitizeUser,
+  validateNewOrder,
 };
