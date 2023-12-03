@@ -128,9 +128,31 @@ const getOrders = async (req, res, next) => {
   }
 };
 
+const deleteOrders = async (req, res, next) => {
+  try {
+    const { orderId } = req.params;
+    const userId = req.user._id;
+
+    const order = await Order.findOneAndDelete({ _id: orderId, owner: userId });
+
+    if (!order) {
+      throw HttpError(404, "Order not found");
+    }
+
+    res.json({
+      status: "success",
+      code: 200,
+      order: order,
+    });
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   getAllCar,
   getSearchedCar,
   addOrder,
   getOrders,
+  deleteOrders,
 };

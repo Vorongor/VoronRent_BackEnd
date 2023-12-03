@@ -11,6 +11,11 @@ router.get("/", carController.getAllCar);
 router.get("/search", carController.getSearchedCar);
 router.post("/order", passportAuthenticate, carController.addOrder);
 router.get("/order", passportAuthenticate, carController.getOrders);
+router.delete(
+  "/order/:orderId",
+  passportAuthenticate,
+  carController.deleteOrders
+);
 
 // router.post(
 //   "/avatar/upload",
