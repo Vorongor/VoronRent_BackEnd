@@ -9,10 +9,10 @@ const { passportAuthenticate } = require("../midlewares/pasportJWT");
 
 router.get("/", carController.getAllCar);
 router.get("/search", carController.getSearchedCar);
-router.post("/order", passportAuthenticate, carController.addOrder);
+router.post("/add", passportAuthenticate, carController.addOrder);
 router.get("/order", passportAuthenticate, carController.getOrders);
 router.delete(
-  "/order/:orderId",
+  "/delete/:orderId",
   passportAuthenticate,
   carController.deleteOrders
 );
