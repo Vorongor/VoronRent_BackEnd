@@ -117,6 +117,7 @@ const validateNewOrder = (data) => {
     contact: Joi.string().required().messages(customMessages),
     startTime: Joi.number().required().messages(customMessages),
     finishTime: Joi.number().required().messages(customMessages),
+    carId: Joi.string().required().messages(customMessages),
   });
 
   return schema.validate(data, { abortEarly: false });
